@@ -12,6 +12,7 @@ const Status = () => {
     aadharNo: 0,
     income: 0,
     status: "",
+    reason: "",
   });
   const [showData, setShowData] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -40,6 +41,7 @@ const Status = () => {
           aadharNo: response.data.response[0].aadharNo,
           userName: response.data.response[0].userName,
           income: response.data.response[0].income,
+          reason: response.data.response[0].reasonForDenial,
         }));
       }
     } catch (error) {
@@ -104,26 +106,6 @@ const Status = () => {
           <h1 className="mb-4 text-2xl underline font-bold text-center">
             Your Application Status
           </h1>
-          {/* <div className="flex justify-center">
-            <div className="flex flex-col">
-              <div className="flex justify-between">
-                <span className="text-lg font-bold">Name</span>
-                <span className="text-lg font-bold">: {res.userName}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-lg font-bold">Aadhar Number</span>
-                <span className="text-lg font-bold">: {res.aadharNo}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-lg font-bold">Annual Income</span>
-                <span className="text-lg font-bold">: {res.income}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-lg font-bold">Application Status</span>
-                <span className="text-lg font-bold">: {res.status}</span>
-              </div>
-            </div>
-          </div> */}
           <div className="flex justify-center">
             <table className="table-auto">
               <tbody>
@@ -155,6 +137,42 @@ const Status = () => {
                     {res.status}
                   </td>
                 </tr>
+                {res.status === "Rejected" && (
+                  <tr>
+                    <td className="border px-4 py-2 font-bold">
+                      Reason for Rejection
+                    </td>
+                    <td className="border px-4 py-2">{res.reason}</td>
+                  </tr>
+                )}
+                {res.status === "Approved" && (
+                  <>
+                    <tr>
+                      <td className="border px-4 py-2 font-bold">
+                        Concerned Officer
+                      </td>
+                      <td className="border px-4 py-2">T.Ramesh</td>
+                    </tr>
+                    <tr>
+                      <td className="border px-4 py-2 font-bold">
+                        Subsidy Information
+                      </td>
+                      <td className="border px-4 py-2">
+                        {res.income === 0
+                          ? `50%`
+                          : res.income > 0 && res.income <= 25000
+                          ? `40%`
+                          : res.income > 25000 && res.income <= 50000
+                          ? `30%`
+                          : res.income > 50000 && res.income <= 75000
+                          ? `20%`
+                          : res.income > 75000 && res.income <= 100000
+                          ? `10%`
+                          : "Not eligible"}
+                      </td>
+                    </tr>
+                  </>
+                )}
               </tbody>
             </table>
           </div>

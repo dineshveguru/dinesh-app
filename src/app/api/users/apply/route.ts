@@ -16,10 +16,13 @@ export async function POST(req: Request) {
     status: "pending",
   });
   if (duplicate_user.length > 0) {
-    return NextResponse.json({
-      message: "User already exists!",
-      response: duplicate_user,
-    });
+    return NextResponse.json(
+      {
+        message: "User already exists!",
+        response: duplicate_user,
+      },
+      { status: 400 }
+    );
   } else {
     const newUser = new user({
       userName: userName,

@@ -16,7 +16,7 @@ const Apply = () => {
     setData((prev) => ({ ...prev, [name]: value }));
   }
   async function submitForm(e: React.FormEvent) {
-    if (data.userName === "" || data.aadharNo === 0 || data.income === 0) {
+    if (data.userName === "" || data.aadharNo === 0) {
       setShowAlert(true);
       setAlertMessage("Please fill all the fields");
       return;
@@ -35,8 +35,12 @@ const Apply = () => {
         });
         setShowAlert(true);
         setAlertMessage("Applied Successfully");
+      } else {
+        setShowAlert(true);
+        setAlertMessage(res.data.message);
       }
     } catch (error) {
+      console.log(error);
       setShowAlert(true);
       setAlertMessage("Something went wrong");
     }
