@@ -35,14 +35,11 @@ const Apply = () => {
         });
         setShowAlert(true);
         setAlertMessage("Applied Successfully");
-      } else {
-        setShowAlert(true);
-        setAlertMessage(res.data.message);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
       setShowAlert(true);
-      setAlertMessage("Something went wrong");
+      setAlertMessage(error.response.data.message);
     }
   }
   useEffect(() => {

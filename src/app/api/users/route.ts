@@ -11,13 +11,16 @@ export async function POST(req: Request) {
     "mongodb+srv://dinesh:dinesh@cluster0.8drl6ek.mongodb.net/"
   );
   const { aadharNo } = await req.json();
-  const duplicate_user = await user.find({
+  const query_user = await user.find({
     aadharNo: aadharNo,
   });
-  if (duplicate_user.length > 0) {
-    return NextResponse.json({
-      response: duplicate_user,
-    });
+  if (query_user.length > 0) {
+    return NextResponse.json(
+      {
+        response: query_user,
+      },
+      { status: 200 }
+    );
   } else {
     return NextResponse.json(
       {

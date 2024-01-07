@@ -13,7 +13,7 @@ export async function POST(req: Request) {
   const { userName, aadharNo, income } = await req.json();
   const duplicate_user = await user.find({
     aadharNo: aadharNo,
-    status: "pending",
+    status: { $ne: "rejected" },
   });
   if (duplicate_user.length > 0) {
     return NextResponse.json(
