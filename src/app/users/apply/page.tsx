@@ -43,7 +43,9 @@ const Apply = () => {
   }, [showAlert]);
   return (
     <div className="p-5 relative">
-      <h1 className="mb-4 text-4xl underline font-bold">Apply for Schema</h1>
+      <h1 className="mb-4 text-4xl underline font-bold text-center">
+        Apply for Schema
+      </h1>
       {showAlert && (
         <div role="alert" className="alert w-max z-2 absolute right-0 mr-10">
           <svg

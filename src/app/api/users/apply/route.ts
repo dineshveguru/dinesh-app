@@ -29,7 +29,6 @@ export async function POST(req: Request) {
       reasonForDenial: "",
     });
     const response = await newUser.save();
-    console.log(response);
     return NextResponse.json({
       message: "New user created successfully!",
       response: response,

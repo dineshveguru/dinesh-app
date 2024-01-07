@@ -7,7 +7,6 @@ export async function GET(req: Request) {
     "mongodb+srv://dinesh:dinesh@cluster0.8drl6ek.mongodb.net/"
   );
   const response = await user.find();
-  console.log(response);
   return NextResponse.json({
     response: response,
   });

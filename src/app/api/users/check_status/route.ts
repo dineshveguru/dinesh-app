@@ -12,7 +12,6 @@ export async function POST(req: Request) {
   );
   const { aadharNo } = await req.json();
   const response = await user.find({ aadharNo: aadharNo });
-  console.log(response);
   return NextResponse.json({
     response: response,
   });
