@@ -145,9 +145,9 @@ const Status = () => {
                   </td>
                   <td
                     className={`border px-4 py-2 ${
-                      res.status === "Approve"
+                      res.status === "Approved"
                         ? "text-green-600"
-                        : res.status === "Reject"
+                        : res.status === "Rejected"
                         ? "text-red-600"
                         : "text-gray-600"
                     }`}

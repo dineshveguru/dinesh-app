@@ -6,8 +6,20 @@ export async function GET(req: Request) {
   const check = await mongoose.connect(
     "mongodb+srv://dinesh:dinesh@cluster0.8drl6ek.mongodb.net/"
   );
-  const response = await user.find();
-  return NextResponse.json({
-    response: response,
-  });
+  try {
+    const response = await user.find({ status: "pending" });
+    return NextResponse.json(
+      {
+        response: response,
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      {
+        error: error,
+      },
+      { status: 400 }
+    );
+  }
 }
